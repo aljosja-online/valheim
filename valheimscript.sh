@@ -47,7 +47,7 @@ services:
       - RESTART_CRON="0 5 * * *"
       - BACKUPS=true
       - BACKUPS_CRON="*/15 * * * *"
-      - BACKUPS_DIRECTORY="/config/backups"
+      - BACKUPS_DIRECTORY="/usr/games/serverconfig/config/backups"
       - BACKUPS_MAX_AGE=21
       - BACKUPS_MAX_COUNT=10
       - BACKUPS_IF_IDLE=false
@@ -57,9 +57,8 @@ services:
       - STEAMCMD_ARGS="validate"
       - VALHEIM_PLUS=true
       - VALHEIM_PLUS_RELEASE="latest"
-      - CAP_SYS_NICE=true
     volumes:
-      - ./valheim-server/config:/config
-      - ./valheim-server/data:/opt/valheim >> docker-compose.yml'
+      - ./valheim-server/config:/usr/games/serverconfig/config
+      - ./valheim-server/data:/usr/games/serverconfig/opt/valheim >> docker-compose.yml'
 echo "@reboot root (cd /usr/games/serverconfig/ && docker-compose up)" > /etc/cron.d/awsgameserver
 sudo docker-compose up
